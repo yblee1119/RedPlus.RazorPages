@@ -16,6 +16,7 @@ namespace RedPlus
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages(); // <------------- 반드시 삽입해야 함 razor page를 만들려면
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +31,7 @@ namespace RedPlus
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages(); // <----------------  반드시 삽입해야 함 razor page를 만들려면
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!!!!");
