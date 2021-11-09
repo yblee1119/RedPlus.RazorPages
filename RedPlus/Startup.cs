@@ -27,15 +27,19 @@ namespace RedPlus
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles(); //<!-----  미들웨어 추가 정의,  정적인 html, css, javascript, 이미지 등  폴더 wwwroot를 만들어서 모아놓음
+            //app.UseFileServer(); //  <--------- 미들웨어 추가 정의, 확장자 .html을 인식 index.html을 이해시키기 위함?  구글검색 microsoft docs usefileserver
+
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages(); // <----------------  반드시 삽입해야 함 razor page를 만들려면
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!!!!");
-                });
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!!!!");
+                //});
             });
         }
     }
