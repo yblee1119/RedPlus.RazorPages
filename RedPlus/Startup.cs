@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RedPlus.Services;
 
 namespace RedPlus
 {
@@ -17,6 +18,7 @@ namespace RedPlus
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages(); // <------------- 반드시 삽입해야 함 razor page를 만들려면
+            services.AddTransient<PortfolioServiceJsonFile>();  //<----------- Json파일 경로를 알아오기위해 의존성주입  DI 컨테이머가 담당함
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

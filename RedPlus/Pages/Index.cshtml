@@ -1,5 +1,10 @@
 @page
 
+@inject PortfolioServiceJsonFile PortfolioService 
+
+@using RedPlus.Models
+@using RedPlus.Services
+
 @*태그핼퍼를 사용하기 위해 반드시 한줄 써넣어야 함 (지시문 사용은 DLL 또는 누겟페키지로 볼 수 있음)*@
 @*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
 
@@ -7,7 +12,19 @@
     //Layout = "_Layout";
 
     ViewBag.Title = "Index";
-    string[] protfolios = { "Onw", "Two", "Three", "Foue", "Five", "Six" };
+    //string[] protfolios = { "Onw", "Two", "Three", "Foue", "Five", "Six" };
+    //위와 같이 스크링형 배열이 아니라
+    //았던 것를 컬랙션형태로 탈바꿈해보자
+
+    //List<Portfolio> portfolios = new List<Portfolio>()
+    //{
+    //    new Portfolio {Id=1, Title=".NET", Description="ASP.NET Core"},
+    //    new Portfolio {Id=2, Title="JAVA", Description="Spring Boot"},
+    //    new Portfolio {Id=3, Title="Javascript", Description="Reac"},
+    //};
+
+    //var portfolios = (new PortfolioServiceJsonFile()).GetPortfolios();
+    var portfolios = PortfolioService.GetPortfolios();
 }
 
 
@@ -99,90 +116,25 @@
         <h2>Portfolio Heading</h2>
 
         <div class="row">
-            @foreach (var portfolio in protfolios)
+            @foreach (var portfolio in portfolios)
             {
                 <h3></h3>
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
+                        @*<a href="#"><img class="card-img-top" src="@portfolio.Image" alt=""></a>*@
+                        <div class="portfolio-item-image" style="background-image:url('@portfolio.Image')"></div>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project @portfolio</a>
+                                <a href="#">@portfolio.Title  </a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                            <p class="card-text">@portfolio.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary">Read More...</button>
                         </div>
                     </div>
                 </div>
             }
-
-            @*<div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Project One</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Project Two</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Project Three</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Project Four</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Project Five</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Project Six</a>
-                            </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                        </div>
-                    </div>
-                </div>*@
-
-
         </div>
         <!-- /.row -->
         <!-- Features Section -->
