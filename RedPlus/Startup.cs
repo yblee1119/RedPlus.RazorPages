@@ -19,6 +19,7 @@ namespace RedPlus
         {
             services.AddRazorPages(); // <------------- 반드시 삽입해야 함 razor page를 만들려면
             services.AddTransient<PortfolioServiceJsonFile>();  //<----------- Json파일 경로를 알아오기위해 의존성주입  DI 컨테이머가 담당함
+            services.AddServerSideBlazor();   // <----블레이저 사용시 추가
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +38,8 @@ namespace RedPlus
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages(); // <----------------  반드시 삽입해야 함 razor page를 만들려면
+                endpoints.MapRazorPages(); // <----------------  반드시 삽입해야 함 razor page를 만들려면 호출
+                endpoints.MapBlazorHub();   // <---- 블레이저 사용하려면 호출
                 //endpoints.MapGet("/", async context =>
                 //{
                 //    await context.Response.WriteAsync("Hello World!!!!");

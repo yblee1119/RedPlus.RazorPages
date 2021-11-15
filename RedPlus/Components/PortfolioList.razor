@@ -1,0 +1,33 @@
+﻿@using RedPlus.Models
+@using RedPlus.Services
+@using Microsoft.AspNetCore.Components.Web 
+@inject PortfolioServiceJsonFile PortfolioService
+
+
+<h2>Blazor 콤포넌트 사용 출력</h2>
+
+<div class="row">
+    @foreach (var portfolio in PortfolioService.GetPortfolios())  // Model.Portfolios 대신에 PortfolioService.GetPortfolios()로 대체
+    {
+        <h3></h3>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                @*<a href="#"><img class="card-img-top" src="@portfolio.Image" alt=""></a>*@
+                <div class="portfolio-item-image" style="background-image:url('@portfolio.Image')"></div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">@portfolio.Title  </a>
+                    </h4>
+                    <p class="card-text">@portfolio.Description</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">Read More...</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+
+}

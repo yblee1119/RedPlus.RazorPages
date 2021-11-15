@@ -1,53 +1,66 @@
 ﻿@page
 
 @model RedPlus.Pages.Portfolios.IndexModel
+
+@using RedPlus.Components
+
 @*@inject PortfolioServiceJsonFile PortfolioService*@
 
 @{
     ViewData["Title"] = "Portfolio";
     //var portfolios = PortfolioService.GetPortfolios();
-} 
-  
-    <!-- Page Content -->
-    <div class="container">
+}
 
-        <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">
-            Portfolio
-            @*<small>Subheading</small>*@
-        </h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a asp-page="/Index">Home</a>
-            </li>
-            <li class="breadcrumb-item active">Portfolio</li>
-        </ol>
+<!-- Page Content -->
+<div class="container">
 
-        <div class="row">
-            @foreach (var portfolio in Model.Portfolios)
-            {
-                <h3></h3>
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        @*<a href="#"><img class="card-img-top" src="@portfolio.Image" alt=""></a>*@
-                        <div class="portfolio-item-image" style="background-image:url('@portfolio.Image')"></div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">@portfolio.Title  </a>
-                            </h4>
-                            <p class="card-text">@portfolio.Description</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary">Read More...</button>
-                        </div>
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        Portfolio
+        @*<small>Subheading</small>*@
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-page="/Index">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Portfolio</li>
+    </ol>
+
+    <h2>Razor Page사용 출력</h2>
+    <div class="row">
+        @foreach (var portfolio in Model.Portfolios)
+        {
+            <h3></h3>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    @*<a href="#"><img class="card-img-top" src="@portfolio.Image" alt=""></a>*@
+                    <div class="portfolio-item-image" style="background-image:url('@portfolio.Image')"></div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">@portfolio.Title  </a>
+                        </h4>
+                        <p class="card-text">@portfolio.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">Read More...</button>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
 
-        <!-- Pagination -->
-        @*<ul class="pagination justify-content-center">
+
+    <hr />
+
+    <component type="typeof(PortfolioList)" render-mode="ServerPrerendered" />
+
+    <script src="_framework/blazor.server.js"></script>
+
+
+    <!-- Pagination -->
+    @*<ul class="pagination justify-content-center">
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
@@ -71,5 +84,5 @@
             </li>
         </ul>*@
 
-    </div>
-    <!-- /.container -->
+</div>
+<!-- /.container -->
