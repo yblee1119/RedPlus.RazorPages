@@ -1,20 +1,30 @@
 [
   {
-    "id": 1,
-    "title": ".NET",
-    "description": "ASP.NET Core",
-    "img": "/Portfolios/Images/Blazor.jpg"
+    "Id": 1,
+    "Title": ".NET",
+    "Description": "ASP.NET Core",
+    "img": "/Portfolios/Images/Blazor.jpg",
+    "Ratings": [
+      5,
+      1
+    ]
   },
   {
-    "id": 2,
-    "title": "JAVA",
-    "description": "Spring Boot",
-    "img": "/Portfolios/Images/Spring.jpg"
+    "Id": 2,
+    "Title": "JAVA",
+    "Description": "Spring Boot",
+    "img": "/Portfolios/Images/Spring.jpg",
+    "Ratings": [
+      4
+    ]
   },
   {
-    "id": 3,
-    "title": "JavaScript",
-    "description": "React.js",
-    "img": "/Portfolios/Images/React.jpg"
+    "Id": 3,
+    "Title": "JavaScript",
+    "Description": "React.js",
+    "img": "/Portfolios/Images/React.jpg",
+    "Ratings": [
+      3
+    ]
   }
 ]
